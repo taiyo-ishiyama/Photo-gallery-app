@@ -1,0 +1,35 @@
+<!-- use base template -->
+{% extends 'base.html' %}
+
+{% block title %}Sign up{% endblock %}
+  {% block contents %}
+  <hr>
+  <div class="container">
+    <div class="row">
+      <div class="col offset-2">
+        <h3>Sign Up</h3>
+        <form method="post">
+          {% csrf_token %}
+          {% for field in form %}
+          <p>
+            {{field.label_tag}}<br>
+            {{field}}
+            {% if field.help_text %}
+            <small style="color:gray">{{field.help_text}}</small>
+            {% endif %}
+            {% for error in field.errors %}
+              <p style="color: red">{{error}}</p>
+              {% endfor %}
+          </p>
+          {% endfor %}
+          <p style="color: red">
+            * Please enter your email address as it is required when you reset your password.
+          </p>
+          <input type="submit" value="Sign up">
+        </form>
+        <br>
+        <p><a href="{% url 'photo:index' %}">Cancel registration and return to the homepage</a></p>
+      </div>
+    </div>
+  </div>
+  {% endblock %}

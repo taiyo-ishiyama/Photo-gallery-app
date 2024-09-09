@@ -1,0 +1,24 @@
+{% extends 'base.html' %}
+{% block title %}Mypage{% endblock %}
+
+      {% block contents %}
+
+      {% if user.is_authenticated %}
+        <br>
+        <div style="text-align:center">
+          <h4>{{user.username}}'s My Page</h4>
+          {% if object_list.count == 0 %}
+            <p>No post by {{user.username}}</p>
+          {% else %}
+            <p><strong>{{object_list.count}}</strong> posts</p>
+          {% endif %}
+          <a href="{% url 'photo:post' %}">Post new photos</a>
+        </div>
+        <hr>
+      {% endif %}
+      
+      {% include "photos_list.html" %}
+        
+      {% include "pagination.html" %}
+
+      {% endblock %}
