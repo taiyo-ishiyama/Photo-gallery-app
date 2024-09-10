@@ -14,6 +14,7 @@ from dotenv import load_dotenv
 
 import os
 from pathlib import Path
+import dj_database_url
 
 load_dotenv()
 
@@ -33,7 +34,8 @@ DEBUG = False
 ALLOWED_HOSTS = [
     '127.0.0.1',
     '*',
-    '.vercel.app'
+    '.vercel.app',
+    '.onrender.com'
 ]
 
 
@@ -60,6 +62,7 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    'whitenoise.middleware.WhiteNoiseMiddleware',
 ]
 
 ROOT_URLCONF = 'photogallery.urls'
